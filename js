@@ -36,14 +36,60 @@ newArray.push(doubleNum);
 for (i = array.length-1; i>=0; i-= 2) {
     newArray.push(array[i]);
   }
-console.log(newArray);
+//console.log(newArray);
 const sumTot = newArray.reduce((a, b) => a + b, 0);
-console.log(sumTot);
+//console.log(sumTot);
 if (sumTot % 10 === 0) {
   return true;
 } else {
   return false;
 }
 }
+//console.log(validateCred(valid4));
 
-console.log(validateCred(valid4));
+const findInvalidCards = (array) => {
+let invalidCards = [];
+array.forEach(testArray => {
+  const test = validateCred(testArray);
+  if (test === false) {
+    invalidCards.push(testArray);
+  }
+})
+return invalidCards;
+}
+
+//console.log(findInvalidCards(batch));
+
+const idInvalidCardCompanies = (array) => {
+  const companies = [];
+array.forEach(incorrectArray => {
+  if (incorrectArray[0] === 3) {
+    companies.push('Amex (American Express)');
+  } else if (incorrectArray[0] === 4) {
+    companies.push('Visa');
+  } else if (incorrectArray[0] === 5) {
+    companies.push('Mastercard');
+  } else if (incorrectArray[0] === 6) {
+    companies.push('Discover');
+  } else {
+    companies.push('Company not found');
+  }
+});
+//console.log(companies);
+
+const removeDuplicates = (arr) => {
+  let unique = [];
+  arr.forEach(element => {
+    if (!unique.includes(element)) {
+      unique.push(element);
+    }
+  })
+  return unique;
+};
+return removeDuplicates(companies);
+};
+
+const invalidCards = findInvalidCards(batch);
+//console.log(invalidCards);
+const invalidCompanies = idInvalidCardCompanies(invalidCards);
+console.log(invalidCompanies);
